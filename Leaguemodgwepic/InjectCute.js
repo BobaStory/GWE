@@ -51,7 +51,7 @@ const observer = new MutationObserver((mutations) => {
                   /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|jpeg|png)/g
                )
             ) {
-               accessCuteThemeCSS(searchbox.value);
+               accessCuterThemeCSS(searchbox.value);
                // console.log('valid url');
             } else {
                //console.log('invalid url');
@@ -70,7 +70,7 @@ const observer = new MutationObserver((mutations) => {
    }
 });
 
-function accessCuteThemeCSS(value) {
+function accessCuterThemeCSS(value) {
    const root = document.documentElement;
    // remove formatting from the url
    // set the root values
@@ -95,35 +95,16 @@ function accessCuteThemeCSS(value) {
    //console.log(decodeURIComponent(value));
 }
 
-function themeReload() {
-   var style = document.createElement('link');
-   style.href = 'https://thicc-thighs.de/league-css/Cute/cute.theme.css';
-   style.type = 'text/css';
-   style.rel = 'stylesheet';
-   head.append(style);
+function insertCss(css) {
+  const style = document.createElement('style')
+  style.textContent = css
+  head.append(style)
 }
 
 window.addEventListener('load', () => {
-   const interval = setInterval(() => {
-      const manager = document.getElementById(
-         'lol-uikit-layer-manager-wrapper'
-      );
-      if (manager) {
-         clearInterval(interval);
-         observer.observe(manager, {
-            attributes: true,
-            childList: true,
-            subtree: true,
-            characterData: true,
-         });
-      }
-   }, 500);
-   document
-      .getElementsByTagName('body')[0]
-      .insertAdjacentHTML(
-         'afterbegin',
-         '<link rel="stylesheet" href="https://thicc-thighs.de/league-css/Cute/cute.theme.css" />'
-      );
+  insertCss(require('cuter.theme.css'))
+
+}
    console.clear();
    console.log('We injected bois');
 });
